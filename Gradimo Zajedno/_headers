@@ -1,0 +1,7 @@
+/*
+  X-Content-Type-Options: nosniff
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.html
+  Content-Type: text/html; charset=UTF-8
+  Cache-Control: public, max-age=0, must-revalidate

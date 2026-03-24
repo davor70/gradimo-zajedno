@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GDPR – Gradimo zajedno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0D2438" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Gradimo" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream: #EEF3F8; --warm-white: #F5F8FB; --stone: #A8BFCC; --earth-deep: #0D2438; --gold: #C6922A; --text: #0D2438; --text-mid: #3D6278; --text-light: #7A9BAD; --border: rgba(26,61,92,0.15); }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); line-height: 1.8; overflow-x: hidden; }
+    nav { background: var(--earth-deep); padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: white; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 0.85rem; color: var(--stone); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    @media (max-width: 600px) { nav { padding: 1rem 1.25rem; } .nav-back span { display: none; } }
+    .container { max-width: 780px; margin: 0 auto; padding: 4rem 2rem 6rem; width: 100%; }
+    .page-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .page-eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--earth-deep); margin-bottom: 0.5rem; line-height: 1.2; }
+    .updated { font-size: 0.85rem; color: var(--text-light); margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--earth-deep); margin: 2.5rem 0 1rem; }
+    p { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 1rem; }
+    ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    ul li { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 0.5rem; }
+    a { color: var(--gold); }
+    .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .right-card { background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem; }
+    .right-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--earth-deep); margin-bottom: 0.5rem; }
+    .right-card p { font-size: 0.85rem; margin-bottom: 0; }
+    .highlight-box { background: var(--earth-deep); border-radius: 4px; padding: 1.5rem 2rem; margin: 2rem 0; }
+    .highlight-box p { color: var(--stone); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .highlight-box p:last-child { margin-bottom: 0; }
+    .highlight-box strong { color: white; }
+    footer { background: var(--earth-deep); padding: 2rem 3rem; text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .footer-links a { font-size: 0.8rem; color: var(--stone); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-text { font-size: 0.8rem; color: var(--stone); }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .container { padding: 3.5rem 2rem 5rem; }
+      h1 { font-size: 2rem; }
+      .rights-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .container { padding: 3rem 1.25rem 4rem; }
+      h1 { font-size: 1.75rem; }
+      h2 { font-size: 1.15rem; }
+      p, ul li { font-size: 0.9rem; }
+      .rights-grid { grid-template-columns: 1fr; }
+      .highlight-box { padding: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.6rem 0.75rem; }
+      footer { padding: 1.5rem 1.25rem; }
+      .footer-links { gap: 0.75rem; }
+      .footer-links a { font-size: 0.75rem; }
+    }
+    @media (max-width: 380px) {
+      h1 { font-size: 1.5rem; }
+      nav { padding: 0.875rem 1rem; }
+      .nav-logo { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Gradimo<span>.</span>zajedno</a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Povratak na stranicu
+  </a>
+</nav>
+
+<div class="container">
+  <div class="page-eyebrow">Pravni dokumenti</div>
+  <h1>GDPR – Zaštita osobnih podataka</h1>
+  <p class="updated">Posljednja izmjena: ožujak 2025.</p>
+
+  <p>Uredba (EU) 2016/679 Europskog parlamenta i Vijeća od 27. travnja 2016. o zaštiti pojedinaca u vezi s obradom osobnih podataka i o slobodnom kretanju takvih podataka (Opća uredba o zaštiti podataka – GDPR) na snazi je od 25. svibnja 2018.</p>
+
+  <p>Gradimo zajedno u potpunosti poštuje odredbe GDPR-a i Zakona o provedbi Opće uredbe o zaštiti podataka (NN 42/2018).</p>
+
+  <h2>Voditelj obrade</h2>
+  <div class="highlight-box">
+    <p><strong>Tvrtka:</strong> ORANGE d.o.o.</p>
+    <p><strong>Država:</strong> Republika Hrvatska</p>
+    <p><strong>Kontakt:</strong> Putem kontakt forme na glavnoj stranici</p>
+    <p><strong>Nadzorno tijelo:</strong> Agencija za zaštitu osobnih podataka (AZOP) – <a href="https://azop.hr" target="_blank" style="color:var(--gold)">azop.hr</a></p>
+  </div>
+
+  <h2>Vaša prava prema GDPR-u</h2>
+  <p>Kao ispitanik (osoba čiji se podaci obrađuju) imate sljedeća prava koja možete ostvariti bez naknade:</p>
+
+  <div class="rights-grid">
+    <div class="right-card">
+      <h3>Pravo na pristup</h3>
+      <p>Možete zatražiti potvrdu obrađujemo li vaše podatke i dobiti kopiju svih podataka koje o vama čuvamo.</p>
+    </div>
+    <div class="right-card">
+      <h3>Pravo na ispravak</h3>
+      <p>Možete zatražiti ispravak netočnih ili nepotpunih osobnih podataka koji se na vas odnose.</p>
+    </div>
+    <div class="right-card">
+      <h3>Pravo na brisanje</h3>
+      <p>Možete zatražiti brisanje vaših osobnih podataka ("pravo na zaborav") u određenim okolnostima.</p>
+    </div>
+    <div class="right-card">
+      <h3>Pravo na ograničenje</h3>
+      <p>Možete zatražiti privremeno ograničenje obrade vaših podataka dok se ne razriješi spor o točnosti ili zakonitosti obrade.</p>
+    </div>
+    <div class="right-card">
+      <h3>Pravo na prenosivost</h3>
+      <p>Možete zatražiti da vam dostavimo vaše podatke u strojno čitljivom formatu ili ih prenesemo drugom voditelju.</p>
+    </div>
+    <div class="right-card">
+      <h3>Pravo na prigovor</h3>
+      <p>Možete uložiti prigovor na obradu podataka temeljenu na legitimnom interesu ili izravnom marketingu.</p>
+    </div>
+    <div class="right-card">
+      <h3>Pravo na povlačenje privole</h3>
+      <p>Kada je obrada temeljena na vašoj privoli, možete je povući u bilo kojem trenutku bez negativnih posljedica.</p>
+    </div>
+    <div class="right-card">
+      <h3>Pravo na pritužbu</h3>
+      <p>Imate pravo podnijeti pritužbu nadzornom tijelu (AZOP) ako smatrate da je obrada nezakonita.</p>
+    </div>
+  </div>
+
+  <h2>Kako ostvariti svoja prava</h2>
+  <p>Zahtjev za ostvarivanje bilo kojeg od navedenih prava možete podnijeti:</p>
+  <ul>
+    <li>Putem kontakt forme na <a href="index.html#kontakt">glavnoj stranici</a></li>
+  </ul>
+  <p>Odgovorit ćemo na vaš zahtjev u roku od <strong>30 dana</strong> od primitka. U iznimno složenim slučajevima rok možemo produljiti za dodatnih 60 dana, uz prethodnu obavijest.</p>
+  <p>Vaš zahtjev je besplatan. Iznimno, za očito neutemeljene ili prekomjerne zahtjeve možemo naplatiti razumnu naknadu ili odbiti postupiti po zahtjevu.</p>
+
+  <h2>Sigurnost podataka</h2>
+  <p>Provodimo odgovarajuće tehničke i organizacijske mjere zaštite osobnih podataka od neovlaštenog pristupa, izmjene, otkrivanja ili uništenja. Stranica koristi HTTPS enkripciju za siguran prijenos podataka.</p>
+
+  <h2>Međunarodni prijenosi</h2>
+  <p>Vaši osobni podaci primarno se obrađuju unutar Europskog gospodarskog prostora (EGP). Ako koristimo usluge pružatelja izvan EGP-a (npr. Google), osiguravamo primjerenu razinu zaštite putem standardnih ugovornih klauzula ili drugog odgovarajućeg zaštitnog mehanizma.</p>
+
+  <h2>Kontakt za zaštitu podataka</h2>
+  <p>Za sva pitanja vezana uz obradu osobnih podataka i ostvarivanje vaših prava obratite nam se putem kontakt forme. Nastojimo odgovoriti što je prije moguće, a najkasnije u propisanom roku od 30 dana.</p>
+
+  <p>Ako niste zadovoljni našim odgovorom, imate pravo podnijeti pritužbu AZOP-u:</p>
+  <ul>
+    <li>Agencija za zaštitu osobnih podataka (AZOP)</li>
+    <li>Selska cesta 136, 10 000 Zagreb</li>
+    <li><a href="https://azop.hr" target="_blank">azop.hr</a></li>
+  </ul>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="privatnost.html">Politika privatnosti</a>
+    <a href="uvjeti.html">Uvjeti korištenja</a>
+    <a href="kolacici.html">Politika kolačića</a>
+    <a href="gdpr.html">GDPR</a>
+  </div>
+  <p class="footer-text">&#169; 2025 Gradimo zajedno. Sva prava pridržana.</p>
+</footer>
+</body>
+</html>

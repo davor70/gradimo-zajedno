@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politika kolačića – Gradimo zajedno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0D2438" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Gradimo" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream: #EEF3F8; --warm-white: #F5F8FB; --stone: #A8BFCC; --earth-deep: #0D2438; --gold: #C6922A; --text: #0D2438; --text-mid: #3D6278; --text-light: #7A9BAD; --border: rgba(26,61,92,0.15); }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); line-height: 1.8; overflow-x: hidden; }
+    nav { background: var(--earth-deep); padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: white; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 0.85rem; color: var(--stone); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    @media (max-width: 600px) { nav { padding: 1rem 1.25rem; } .nav-back span { display: none; } }
+    .container { max-width: 780px; margin: 0 auto; padding: 4rem 2rem 6rem; width: 100%; }
+    .page-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .page-eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--earth-deep); margin-bottom: 0.5rem; line-height: 1.2; }
+    .updated { font-size: 0.85rem; color: var(--text-light); margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--earth-deep); margin: 2.5rem 0 1rem; }
+    p { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 1rem; }
+    ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    ul li { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 0.5rem; }
+    a { color: var(--gold); }
+    table { width: 100%; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.875rem; }
+    th { background: var(--earth-deep); color: white; padding: 0.75rem 1rem; text-align: left; font-weight: 500; }
+    td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-mid); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: var(--cream); }
+    .cookie-btn { display: inline-block; background: var(--gold); color: white; border: none; padding: 0.65rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; border-radius: 2px; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+    .cookie-btn:hover { background: #DBA83E; }
+    footer { background: var(--earth-deep); padding: 2rem 3rem; text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .footer-links a { font-size: 0.8rem; color: var(--stone); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-text { font-size: 0.8rem; color: var(--stone); }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .container { padding: 3.5rem 2rem 5rem; }
+      h1 { font-size: 2rem; }
+      .rights-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .container { padding: 3rem 1.25rem 4rem; }
+      h1 { font-size: 1.75rem; }
+      h2 { font-size: 1.15rem; }
+      p, ul li { font-size: 0.9rem; }
+      .rights-grid { grid-template-columns: 1fr; }
+      .highlight-box { padding: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.6rem 0.75rem; }
+      footer { padding: 1.5rem 1.25rem; }
+      .footer-links { gap: 0.75rem; }
+      .footer-links a { font-size: 0.75rem; }
+    }
+    @media (max-width: 380px) {
+      h1 { font-size: 1.5rem; }
+      nav { padding: 0.875rem 1rem; }
+      .nav-logo { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Gradimo<span>.</span>zajedno</a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Povratak na stranicu
+  </a>
+</nav>
+
+<div class="container">
+  <div class="page-eyebrow">Pravni dokumenti</div>
+  <h1>Politika kolačića</h1>
+  <p class="updated">Posljednja izmjena: ožujak 2025.</p>
+
+  <p>Ova stranica koristi kolačiće (cookies) kako bi osigurala ispravno funkcioniranje i pružila bolje korisničko iskustvo. Ova Politika kolačića objašnjava što su kolačići, koje koristimo i kako njima upravljati.</p>
+
+  <h2>1. Što su kolačići?</h2>
+  <p>Kolačići su male tekstualne datoteke koje web stranica pohranjuje na vaše računalo ili mobilni uređaj kada je posjetite. Omogućuju stranici da zapamti vaše postavke i radnje kroz određeno vremensko razdoblje.</p>
+
+  <h2>2. Koje kolačiće koristimo</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Naziv</th>
+        <th>Vrsta</th>
+        <th>Svrha</th>
+        <th>Trajanje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>gz-cookies</td>
+        <td>Nužni</td>
+        <td>Pamti vašu odluku o pristanku na kolačiće</td>
+        <td>1 godina</td>
+      </tr>
+      <tr>
+        <td>_ga</td>
+        <td>Analitički</td>
+        <td>Google Analytics – razlikuje korisnike</td>
+        <td>2 godine</td>
+      </tr>
+      <tr>
+        <td>_ga_*</td>
+        <td>Analitički</td>
+        <td>Google Analytics – pohranjuje stanje sesije</td>
+        <td>2 godine</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>3. Vrste kolačića prema svrsi</h2>
+
+  <p><strong>Nužni kolačići</strong> – neophodni za funkcioniranje stranice. Ne mogu se isključiti jer bez njih stranica ne bi radila ispravno. Ne pohranjuju osobne podatke.</p>
+
+  <p><strong>Analitički kolačići</strong> – pomažu nam razumjeti kako posjetitelji koriste stranicu (koje stranice posjećuju, koliko vremena provode). Sve informacije su anonimne. Koristimo ih samo uz vaš pristanak.</p>
+
+  <h2>4. Kako upravljati kolačićima</h2>
+  <p>Možete upravljati kolačićima na nekoliko načina:</p>
+  <ul>
+    <li><strong>Putem bannera na stranici</strong> – pri prvom posjetu možete prihvatiti sve ili samo nužne kolačiće</li>
+    <li><strong>Putem postavki preglednika</strong> – većina preglednika omogućuje blokiranje ili brisanje kolačića</li>
+    <li><strong>Resetiranjem pristanka</strong> – kliknite gumb ispod</li>
+  </ul>
+
+  <p>Za upravljanje kolačićima u preglednicima:</p>
+  <ul>
+    <li><a href="https://support.google.com/chrome/answer/95647" target="_blank">Google Chrome</a></li>
+    <li><a href="https://support.mozilla.org/hr/kb/kolacici-informacije-koje-web-mjesta-pohranjuju" target="_blank">Mozilla Firefox</a></li>
+    <li><a href="https://support.apple.com/hr-hr/guide/safari/sfri11471/mac" target="_blank">Safari</a></li>
+    <li><a href="https://support.microsoft.com/hr-hr/topic/brisanje-i-upravljanje-kola%C4%8Di%C4%87ima-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank">Microsoft Edge</a></li>
+  </ul>
+
+  <button class="cookie-btn" onclick="resetCookies()">Resetiraj moje postavke kolačića</button>
+
+  <h2>5. Kolačići trećih strana</h2>
+  <p>Koristimo Google Fonts za prikaz fontova. Google može pohraniti kolačiće u skladu sa svojom politikom privatnosti dostupnom na <a href="https://policies.google.com/privacy" target="_blank">policies.google.com</a>.</p>
+
+  <h2>6. Izmjene politike</h2>
+  <p>Ovu Politiku kolačića možemo povremeno ažurirati. Preporučujemo da je povremeno pregledite.</p>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="privatnost.html">Politika privatnosti</a>
+    <a href="uvjeti.html">Uvjeti korištenja</a>
+    <a href="kolacici.html">Politika kolačića</a>
+    <a href="gdpr.html">GDPR</a>
+  </div>
+  <p class="footer-text">&#169; 2025 Gradimo zajedno. Sva prava pridržana.</p>
+</footer>
+
+<script>
+  function resetCookies() {
+    localStorage.removeItem('gz-cookies');
+    alert('Postavke kolačića su resetirane. Pri sljedećem posjetu stranici prikazat će se banner za pristanak.');
+  }
+</script>
+</body>
+</html>

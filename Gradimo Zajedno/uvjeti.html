@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uvjeti korištenja – Gradimo zajedno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0D2438" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Gradimo" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream: #EEF3F8; --warm-white: #F5F8FB; --stone: #A8BFCC; --earth-deep: #0D2438; --gold: #C6922A; --text: #0D2438; --text-mid: #3D6278; --text-light: #7A9BAD; --border: rgba(26,61,92,0.15); }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); line-height: 1.8; overflow-x: hidden; }
+    nav { background: var(--earth-deep); padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: white; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 0.85rem; color: var(--stone); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    @media (max-width: 600px) { nav { padding: 1rem 1.25rem; } .nav-back span { display: none; } }
+    .container { max-width: 780px; margin: 0 auto; padding: 4rem 2rem 6rem; width: 100%; }
+    .page-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .page-eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--earth-deep); margin-bottom: 0.5rem; line-height: 1.2; }
+    .updated { font-size: 0.85rem; color: var(--text-light); margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--earth-deep); margin: 2.5rem 0 1rem; }
+    p { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 1rem; }
+    ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    ul li { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 0.5rem; }
+    a { color: var(--gold); }
+    footer { background: var(--earth-deep); padding: 2rem 3rem; text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .footer-links a { font-size: 0.8rem; color: var(--stone); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-text { font-size: 0.8rem; color: var(--stone); }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .container { padding: 3.5rem 2rem 5rem; }
+      h1 { font-size: 2rem; }
+      .rights-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .container { padding: 3rem 1.25rem 4rem; }
+      h1 { font-size: 1.75rem; }
+      h2 { font-size: 1.15rem; }
+      p, ul li { font-size: 0.9rem; }
+      .rights-grid { grid-template-columns: 1fr; }
+      .highlight-box { padding: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.6rem 0.75rem; }
+      footer { padding: 1.5rem 1.25rem; }
+      .footer-links { gap: 0.75rem; }
+      .footer-links a { font-size: 0.75rem; }
+    }
+    @media (max-width: 380px) {
+      h1 { font-size: 1.5rem; }
+      nav { padding: 0.875rem 1rem; }
+      .nav-logo { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Gradimo<span>.</span>zajedno</a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Povratak na stranicu
+  </a>
+</nav>
+
+<div class="container">
+  <div class="page-eyebrow">Pravni dokumenti</div>
+  <h1>Uvjeti korištenja</h1>
+  <p class="updated">Posljednja izmjena: ožujak 2025.</p>
+
+  <p>Korištenjem web stranice gradimozajedno.hr prihvaćate ove Uvjete korištenja. Molimo pažljivo pročitajte prije nastavka korištenja stranice.</p>
+
+  <h2>1. O usluzi</h2>
+  <p>Gradimo zajedno je usluga facilitacije investicijskih projekata nekretnina. Pružamo informacije, spajamo investitore i vlasnike zemljišta te koordiniramo procese vezane uz zajedničku gradnju i investicijska ulaganja u nekretnine na području Primorsko-goranske županije i Istre.</p>
+  <p><strong>Važna napomena:</strong> Gradimo zajedno nije financijski savjetnik, investicijski fond, ni ovlašteni posrednik u prometu nekretninama. Sve informacije na stranici su informativnog karaktera i ne predstavljaju investicijski savjet.</p>
+
+  <h2>2. Korištenje stranice</h2>
+  <p>Pristupanjem i korištenjem ove stranice obvezujete se da:</p>
+  <ul>
+    <li>Nećete koristiti stranicu u protuzakonite svrhe</li>
+    <li>Nećete pokušavati neovlašteno pristupiti sustavu</li>
+    <li>Nećete prenositi zlonamjerni softver ili štetne sadržaje</li>
+    <li>Nećete koristiti automatizirane alate za scraping sadržaja bez odobrenja</li>
+    <li>Podatke u kontakt formi navodite točno i istinito</li>
+  </ul>
+
+  <h2>3. Intelektualno vlasništvo</h2>
+  <p>Sav sadržaj na ovoj stranici – uključujući tekstove, grafike, logotipe i dizajn – vlasništvo je tvrtke ORANGE d.o.o. i zaštićen je autorskim pravom. Zabranjeno je reproduciranje, distribucija ili korištenje sadržaja bez pisanog odobrenja.</p>
+
+  <h2>4. Odricanje od odgovornosti</h2>
+  <p>Gradimo zajedno nastoji osigurati točnost informacija na stranici, ali ne jamči njihovu potpunost ni ažurnost. Stranica se pruža "kakva jest" bez jamstava bilo koje vrste.</p>
+  <p>Nismo odgovorni za:</p>
+  <ul>
+    <li>Investicijske odluke donijete na temelju informacija s ove stranice</li>
+    <li>Gubitke nastale uslijed ulaganja u projekte</li>
+    <li>Sadržaj vanjskih stranica na koje se linkamo</li>
+    <li>Privremenu nedostupnost stranice</li>
+  </ul>
+
+  <h2>5. Kontakt i upiti</h2>
+  <p>Slanjem upita putem kontakt forme potvrđujete da su podaci koje ste naveli točni te da pristajete na kontakt od strane Gradimo zajedno u svrhu odgovora na vaš upit. Slanje upita ne stvara ugovorni odnos ni obvezu s naše strane.</p>
+
+  <h2>6. Mjerodavno pravo</h2>
+  <p>Na ove Uvjete korištenja primjenjuje se pravo Republike Hrvatske. Za sve sporove nadležan je stvarno nadležni sud u Rijeci.</p>
+
+  <h2>7. Izmjene uvjeta</h2>
+  <p>Zadržavamo pravo izmjene ovih Uvjeta korištenja u bilo koje vrijeme. Izmjene stupaju na snagu objavom na ovoj stranici. Nastavak korištenja stranice nakon objave izmjena smatra se prihvaćanjem izmijenjenih uvjeta.</p>
+
+  <h2>8. Kontakt</h2>
+  <p>Za sva pitanja vezana uz ove Uvjete korištenja možete nas kontaktirati putem kontakt forme na glavnoj stranici.</p>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="privatnost.html">Politika privatnosti</a>
+    <a href="uvjeti.html">Uvjeti korištenja</a>
+    <a href="kolacici.html">Politika kolačića</a>
+    <a href="gdpr.html">GDPR</a>
+  </div>
+  <p class="footer-text">&#169; 2025 Gradimo zajedno. Sva prava pridržana.</p>
+</footer>
+</body>
+</html>
