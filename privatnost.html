@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politika privatnosti – Gradimo zajedno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0D2438" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Gradimo" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #EEF3F8; --warm-white: #F5F8FB; --stone: #A8BFCC;
+      --earth-deep: #0D2438; --gold: #C6922A; --text: #0D2438;
+      --text-mid: #3D6278; --text-light: #7A9BAD; --border: rgba(26,61,92,0.15);
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); line-height: 1.8; overflow-x: hidden; }
+    nav { background: var(--earth-deep); padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: white; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 0.85rem; color: var(--stone); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    @media (max-width: 600px) { nav { padding: 1rem 1.25rem; } .nav-back span { display: none; } }
+    .container { max-width: 780px; margin: 0 auto; padding: 4rem 2rem 6rem; width: 100%; }
+    .page-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .page-eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--earth-deep); margin-bottom: 0.5rem; line-height: 1.2; }
+    .updated { font-size: 0.85rem; color: var(--text-light); margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--earth-deep); margin: 2.5rem 0 1rem; }
+    p { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 1rem; }
+    ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    ul li { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 0.5rem; }
+    a { color: var(--gold); }
+    footer { background: var(--earth-deep); padding: 2rem 3rem; text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .footer-links a { font-size: 0.8rem; color: var(--stone); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-text { font-size: 0.8rem; color: var(--stone); }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .container { padding: 3.5rem 2rem 5rem; }
+      h1 { font-size: 2rem; }
+      .rights-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .container { padding: 3rem 1.25rem 4rem; }
+      h1 { font-size: 1.75rem; }
+      h2 { font-size: 1.15rem; }
+      p, ul li { font-size: 0.9rem; }
+      .rights-grid { grid-template-columns: 1fr; }
+      .highlight-box { padding: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.6rem 0.75rem; }
+      footer { padding: 1.5rem 1.25rem; }
+      .footer-links { gap: 0.75rem; }
+      .footer-links a { font-size: 0.75rem; }
+    }
+    @media (max-width: 380px) {
+      h1 { font-size: 1.5rem; }
+      nav { padding: 0.875rem 1rem; }
+      .nav-logo { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Gradimo<span>.</span>zajedno</a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Povratak na stranicu
+  </a>
+</nav>
+
+<div class="container">
+  <div class="page-eyebrow">Pravni dokumenti</div>
+  <h1>Politika privatnosti</h1>
+  <p class="updated">Posljednja izmjena: ožujak 2025.</p>
+
+  <p>Gradimo zajedno (u daljnjem tekstu: "mi", "nas" ili "naša tvrtka") obvezuje se zaštiti privatnost korisnika naše web stranice. Ova Politika privatnosti objašnjava kako prikupljamo, koristimo i štitimo vaše osobne podatke u skladu s Uredbom (EU) 2016/679 (GDPR) i Zakonom o provedbi Opće uredbe o zaštiti podataka (NN 42/2018).</p>
+
+  <h2>1. Voditelj obrade podataka</h2>
+  <p>Voditelj obrade osobnih podataka je tvrtka ORANGE d.o.o., Hrvatska. Za sva pitanja vezana uz obradu osobnih podataka možete nas kontaktirati putem kontakt forme na stranici ili emailom.</p>
+
+  <h2>2. Koje podatke prikupljamo</h2>
+  <p>Prikupljamo sljedeće osobne podatke kada ih dobrovoljno dostavite putem kontakt forme:</p>
+  <ul>
+    <li>Ime i prezime</li>
+    <li>Email adresa</li>
+    <li>Broj telefona (opcionalno)</li>
+    <li>Sadržaj poruke koju ste nam uputili</li>
+    <li>Tip upita (investitor ili vlasnik zemljišta/projekta)</li>
+  </ul>
+  <p>Putem kolačića (cookies) možemo prikupljati tehničke podatke o korištenju stranice (vidjeti Politiku kolačića).</p>
+
+  <h2>3. Svrha i pravna osnova obrade</h2>
+  <p>Vaše podatke obrađujemo za sljedeće svrhe:</p>
+  <ul>
+    <li><strong>Odgovor na upit:</strong> Obrada je nužna za poduzimanje koraka na vaš zahtjev prije sklapanja ugovora (čl. 6. st. 1. t. b) GDPR-a).</li>
+    <li><strong>Komunikacija:</strong> Na temelju našeg legitimnog interesa za pružanje usluge (čl. 6. st. 1. t. f) GDPR-a).</li>
+    <li><strong>Analitika:</strong> Na temelju vašeg pristanka (čl. 6. st. 1. t. a) GDPR-a).</li>
+  </ul>
+
+  <h2>4. Čuvanje podataka</h2>
+  <p>Podatke čuvamo samo onoliko dugo koliko je potrebno za ispunjenje svrhe zbog koje su prikupljeni, ili kako to zahtijeva zakon. Podatke iz upita čuvamo do dvije godine od posljednjeg kontakta, osim ako ne postoji zakonska obveza duljeg čuvanja.</p>
+
+  <h2>5. Dijeljenje podataka</h2>
+  <p>Vaše osobne podatke ne prodajemo trećim stranama. Podatke možemo dijeliti s:</p>
+  <ul>
+    <li>Pružateljima tehničkih usluga (hosting, email) koji djeluju kao izvršitelji obrade i obvezani su ugovorima o zaštiti podataka.</li>
+    <li>Nadležnim tijelima kada to zahtijeva zakon.</li>
+  </ul>
+
+  <h2>6. Vaša prava</h2>
+  <p>Temeljem GDPR-a imate sljedeća prava:</p>
+  <ul>
+    <li>Pravo na pristup svojim osobnim podacima</li>
+    <li>Pravo na ispravak netočnih podataka</li>
+    <li>Pravo na brisanje ("pravo na zaborav")</li>
+    <li>Pravo na ograničenje obrade</li>
+    <li>Pravo na prenosivost podataka</li>
+    <li>Pravo na prigovor</li>
+    <li>Pravo na povlačenje privole (kada je obrada temeljena na privoli)</li>
+  </ul>
+  <p>Zahtjev za ostvarivanje prava možete podnijeti putem kontakt forme. Odgovorit ćemo u roku od 30 dana.</p>
+
+  <h2>7. Pritužba nadzornom tijelu</h2>
+  <p>Ako smatrate da obrada vaših osobnih podataka krši GDPR, imate pravo podnijeti pritužbu Agenciji za zaštitu osobnih podataka (AZOP), Selska cesta 136, 10 000 Zagreb, <a href="https://azop.hr" target="_blank">azop.hr</a>.</p>
+
+  <h2>8. Izmjene politike</h2>
+  <p>Zadržavamo pravo izmjene ove Politike privatnosti. O svim značajnim izmjenama obavijestit ćemo vas objavom na ovoj stranici s novim datumom izmjene.</p>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="privatnost.html">Politika privatnosti</a>
+    <a href="uvjeti.html">Uvjeti korištenja</a>
+    <a href="kolacici.html">Politika kolačića</a>
+    <a href="gdpr.html">GDPR</a>
+  </div>
+  <p class="footer-text">&#169; 2025 Gradimo zajedno. Sva prava pridržana.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gradimo zajedno – Zajednička ulaganja u nekretnine</title>
+  <meta name="description" content="Spajamo investitore i zemljišta u Primorsko-goranskoj županiji i Istri. Vodimo vas kroz cijeli proces – od ideje do ključa u ruci." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0D2438" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Gradimo" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #EEF3F8;
+      --warm-white: #F5F8FB;
+      --stone: #A8BFCC;
+      --earth-deep: #0D2438;
+      --gold: #C6922A;
+      --gold-light: #DBA83E;
+      --mid-blue: #2E6E8E;
+      --text: #0D2438;
+      --text-mid: #3D6278;
+      --text-light: #7A9BAD;
+      --border: rgba(26, 61, 92, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(245,248,251,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(13,36,56,0.1); }
+    nav.menu-open .nav-links {
+      display: flex !important; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--warm-white); padding: 1rem 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border); gap: 1rem;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--earth-deep); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--earth-deep) !important; color: white !important; padding: 0.55rem 1.4rem; border-radius: 2px; }
+    .nav-cta:hover { background: var(--gold) !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--earth-deep); transition: transform 0.3s, opacity 0.3s; }
+    nav.menu-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.menu-open .nav-hamburger span:nth-child(2) { opacity: 0; }
+    nav.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem 3rem; }
+    .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 4vw, 3.75rem); font-weight: 700; line-height: 1.15; color: var(--earth-deep); margin-bottom: 1.75rem; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 460px; margin-bottom: 2.5rem; line-height: 1.8; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: white; padding: 0.85rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; border: none; border-radius: 2px; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--earth-deep); padding: 0.85rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; border: 1.5px solid var(--earth-deep); border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .btn-secondary:hover { background: var(--earth-deep); color: white; transform: translateY(-1px); }
+
+    .hero-right { position: relative; background: var(--earth-deep); overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-image: url('pexels-expect-best-79873-323775.jpg'); background-size: cover; background-position: center; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,36,56,0.65) 0%, rgba(13,36,56,0.45) 100%); }
+    .hero-visual { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 3rem; gap: 1.25rem; }
+    .hero-stat { background: rgba(245,248,251,0.08); border: 1px solid rgba(245,248,251,0.18); border-radius: 4px; padding: 1.4rem 2rem; width: 100%; max-width: 320px; backdrop-filter: blur(8px); transition: transform 0.3s, background 0.3s; }
+    .hero-stat:hover { background: rgba(245,248,251,0.14); transform: translateX(-4px); }
+    .hero-stat-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); margin-bottom: 0.3rem; }
+    .hero-stat-value { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #F5F8FB; line-height: 1.2; }
+    .hero-stat-desc { font-size: 0.8rem; color: var(--stone); margin-top: 0.25rem; }
+    .hero-location { display: flex; align-items: center; gap: 0.5rem; color: var(--stone); font-size: 0.8rem; font-weight: 500; }
+
+    section { padding: 6rem 3rem; }
+    .section-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .section-eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; color: var(--earth-deep); line-height: 1.25; margin-bottom: 1rem; }
+    .section-subtitle { font-size: 1rem; color: var(--text-mid); max-width: 560px; line-height: 1.8; }
+
+    #modeli { background: var(--cream); }
+    .modeli-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3.5rem; }
+    .model-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+    .model-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(13,36,56,0.1); }
+    .model-card-header { padding: 2.5rem 2.5rem 2rem; position: relative; }
+    .model-card-header.model-a { background: var(--earth-deep); }
+    .model-card-header.model-b { background: var(--mid-blue); }
+    .model-number { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 700; color: rgba(255,255,255,0.08); position: absolute; top: 1rem; right: 1.5rem; line-height: 1; }
+    .model-tag { display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); border: 1px solid rgba(168,191,204,0.3); padding: 0.3rem 0.75rem; border-radius: 1px; margin-bottom: 1rem; }
+    .model-card-title { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: #F5F8FB; line-height: 1.25; }
+    .model-card-body { padding: 2.5rem; }
+    .model-desc { font-size: 0.95rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 2rem; }
+    .model-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .model-features li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text); }
+    .model-features li::before { content: ''; display: block; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 0.55rem; }
+
+    #kako { background: var(--warm-white); }
+    .kako-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 3.5rem; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .kako-step { padding: 2.5rem 2rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.3s; }
+    .kako-step:hover { background: var(--cream); }
+    .kako-step:nth-child(3n) { border-right: none; }
+    .kako-step:nth-child(4), .kako-step:nth-child(5), .kako-step:nth-child(6) { border-bottom: none; }
+    .kako-step-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 1rem; }
+    .kako-step-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; color: var(--earth-deep); margin-bottom: 0.75rem; }
+    .kako-step-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.8; }
+
+    #zasto { background: var(--earth-deep); }
+    #zasto .section-eyebrow { color: var(--stone); }
+    #zasto .section-eyebrow::before { background: var(--stone); }
+    #zasto .section-title { color: #F5F8FB; }
+    .zasto-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3.5rem; }
+    .zasto-text p { font-size: 1.05rem; color: var(--stone); line-height: 1.9; margin-bottom: 1.5rem; }
+    .zasto-text p strong { color: #F5F8FB; font-weight: 500; }
+    .zasto-quote { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-style: italic; color: #F5F8FB; line-height: 1.6; border-left: 3px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; }
+    .zasto-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .zasto-card { background: rgba(245,248,251,0.06); border: 1px solid rgba(245,248,251,0.1); border-radius: 4px; padding: 1.5rem 1.75rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: background 0.3s, transform 0.3s; }
+    .zasto-card:hover { background: rgba(245,248,251,0.1); transform: translateX(4px); }
+    .zasto-card-icon { width: 40px; height: 40px; background: rgba(198,146,42,0.2); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--gold-light); }
+    .zasto-card-title { font-size: 0.9rem; font-weight: 500; color: #F5F8FB; margin-bottom: 0.25rem; }
+    .zasto-card-desc { font-size: 0.825rem; color: var(--stone); line-height: 1.7; }
+
+    #faq { background: var(--cream); }
+    .faq-layout { display: grid; grid-template-columns: 1fr 380px; gap: 3rem; align-items: start; margin-top: 3rem; }
+    .faq-list { border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .faq-image { position: sticky; top: 6rem; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(13,36,56,0.12); }
+    .faq-image img { width: 100%; height: 100%; object-fit: cover; display: block; max-height: 480px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question { width: 100%; background: none; border: none; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; text-align: left; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; color: var(--earth-deep); transition: background 0.2s; gap: 1rem; }
+    .faq-question:hover { background: rgba(26,61,92,0.04); }
+    .faq-icon { width: 24px; height: 24px; border-radius: 50%; background: var(--earth-deep); color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; line-height: 1; transition: transform 0.3s, background 0.2s; pointer-events: none; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner { padding: 0 2rem 1.5rem; font-size: 0.9rem; color: var(--text-mid); line-height: 1.85; }
+
+    #kontakt { background: var(--warm-white); }
+    .kontakt-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; margin-top: 3.5rem; align-items: start; }
+    .kontakt-info h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--earth-deep); margin-bottom: 1rem; }
+    .kontakt-info p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 2rem; }
+    .kontakt-detail { display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; color: var(--text-mid); margin-bottom: 0.75rem; }
+    .kontakt-detail svg { color: var(--gold); flex-shrink: 0; }
+    .divider { width: 100%; height: 1px; background: var(--border); margin: 2rem 0; }
+    .form-tabs { display: flex; margin-bottom: 2rem; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+    .form-tab { flex: 1; padding: 0.75rem 1rem; background: none; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; color: var(--text-mid); cursor: pointer; transition: all 0.2s; text-align: center; }
+    .form-tab.active { background: var(--earth-deep); color: white; }
+    form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-mid); }
+    input, textarea, select { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); background: var(--cream); border: 1.5px solid var(--border); border-radius: 2px; padding: 0.75rem 1rem; transition: border-color 0.2s, box-shadow 0.2s; outline: none; width: 100%; }
+    input:focus, textarea:focus, select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(198,146,42,0.12); }
+    textarea { resize: vertical; min-height: 100px; }
+    .form-note { font-size: 0.78rem; color: var(--text-light); margin-top: 0.5rem; }
+
+    footer { background: var(--earth-deep); padding: 3rem 3rem 5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(245,248,251,0.1); }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #F5F8FB; }
+    .footer-logo span { color: var(--gold); }
+    .footer-text { font-size: 0.8rem; color: var(--stone); }
+    .footer-region { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--stone); }
+    .footer-legal { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: flex-end; width: 100%; border-top: 1px solid rgba(245,248,251,0.08); padding-top: 1.25rem; margin-top: 0.5rem; }
+    .footer-legal a { font-size: 0.75rem; color: var(--stone); text-decoration: none; transition: color 0.2s; opacity: 0.7; }
+    .footer-legal a:hover { color: var(--gold); opacity: 1; }
+
+    @media (max-width: 1024px) {
+      .hero h1 { font-size: 2.8rem; }
+      .zasto-layout { gap: 3rem; }
+      .kontakt-layout { gap: 3rem; }
+    }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      /* Hero: stack vertically, text first then image */
+      .hero { grid-template-columns: 1fr; grid-template-rows: auto auto; min-height: auto; }
+      .hero-left { padding: 6rem 2rem 2.5rem; order: 1; }
+      .hero-right { min-height: 320px; order: 2; }
+
+      /* Hero stats: horizontal scroll row */
+      .hero-visual { flex-direction: row; overflow-x: auto; overflow-y: visible; padding: 1.5rem; gap: 0.75rem; align-items: stretch; justify-content: flex-start; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+      .hero-visual::-webkit-scrollbar { display: none; }
+      .hero-stat { min-width: 200px; max-width: 200px; flex-shrink: 0; scroll-snap-align: start; padding: 1.1rem 1.25rem; }
+      .hero-location { min-width: max-content; flex-shrink: 0; }
+      .hero-stat-value { font-size: 1.2rem; }
+      .hero-stat-desc { font-size: 0.78rem; }
+
+      section { padding: 4rem 2rem; }
+      .modeli-grid { grid-template-columns: 1fr; }
+      .model-card-header { padding: 2rem 2rem 1.5rem; }
+      .model-card-body { padding: 2rem; }
+      .kako-grid { grid-template-columns: 1fr 1fr; }
+      .zasto-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .zasto-quote { font-size: 1.25rem; }
+      .faq-layout { grid-template-columns: 1fr 280px; gap: 2rem; }
+      .faq-image img { max-height: 360px; }
+      .kontakt-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem 5rem; }
+      .footer-region { justify-content: center; }
+      .footer-legal { justify-content: center; gap: 0.75rem; width: 100%; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .hero-left { padding: 5.5rem 1.25rem 2rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-btns { flex-direction: column; gap: 0.75rem; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; padding: 1rem 1.5rem; }
+      .hero-right { min-height: 260px; }
+      .hero-visual { padding: 1.25rem; gap: 0.65rem; }
+      .hero-stat { min-width: 175px; max-width: 175px; padding: 0.9rem 1rem; }
+      .hero-stat-value { font-size: 1.05rem; }
+      .hero-stat-desc { font-size: 0.72rem; }
+      section { padding: 3rem 1.25rem; }
+      .section-title { font-size: 1.75rem; }
+      .kako-grid { grid-template-columns: 1fr; }
+      .kako-step { border-right: none !important; border-bottom: 1px solid var(--border) !important; padding: 1.75rem 1.25rem; }
+      .kako-step:last-child { border-bottom: none !important; }
+      .kako-step-num { font-size: 2.2rem; }
+      .model-card-title { font-size: 1.3rem; }
+      .model-number { font-size: 3rem; }
+      .zasto-quote { font-size: 1.1rem; padding-left: 1.25rem; }
+      .zasto-card { padding: 1.25rem; }
+      .faq-layout { grid-template-columns: 1fr; }
+      .faq-image { display: none; }
+      .faq-question { padding: 1.25rem; font-size: 0.9rem; }
+      .faq-answer-inner { padding: 0 1.25rem 1.25rem; }
+      .faq-list { margin-top: 2rem; }
+      .form-tabs { flex-direction: column; }
+      .form-tab { padding: 0.9rem; border-bottom: 1px solid var(--border); }
+      .form-tab:last-child { border-bottom: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .kontakt-info p { font-size: 0.875rem; }
+    }
+    @media (max-width: 390px) {
+      .hero h1 { font-size: 1.85rem; }
+      .hero-sub { font-size: 0.9rem; }
+      .hero-right { min-height: 260px; }
+      .hero-stat { padding: 0.85rem 1rem; }
+      .hero-stat-value { font-size: 1.05rem; }
+      .hero-stat-desc { font-size: 0.7rem; }
+      .hero-location { font-size: 0.72rem; }
+      section { padding: 2.5rem 1rem; }
+      .section-title { font-size: 1.6rem; }
+      .model-card-title { font-size: 1.2rem; }
+      .model-desc { font-size: 0.875rem; }
+      .model-features li { font-size: 0.85rem; }
+      .kako-step-title { font-size: 0.95rem; }
+      .kako-step-desc { font-size: 0.825rem; }
+      .zasto-quote { font-size: 1rem; }
+      .zasto-text p { font-size: 0.95rem; }
+      .zasto-card-title { font-size: 0.85rem; }
+      .faq-question { font-size: 0.85rem; padding: 1rem; }
+      .faq-answer-inner { font-size: 0.85rem; padding: 0 1rem 1rem; }
+      .kontakt-info h3 { font-size: 1.1rem; }
+      .form-tab { font-size: 0.8rem; padding: 0.8rem 0.5rem; }
+      .nav-logo { font-size: 1.05rem; }
+      footer { padding: 1.5rem 1rem; }
+      .footer-text { font-size: 0.72rem; }
+    }
+    /* COOKIE BANNER */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 999;
+      background: var(--earth-deep);
+      border-top: 1px solid rgba(198,146,42,0.3);
+      padding: 1.1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      box-shadow: 0 -4px 24px rgba(13,36,56,0.2);
+      transform: translateY(0);
+      transition: transform 0.4s ease;
+    }
+    .cookie-banner.hidden { transform: translateY(110%); }
+    .cookie-text {
+      font-size: 0.85rem;
+      color: var(--stone);
+      line-height: 1.6;
+      flex: 1;
+      min-width: 200px;
+    }
+    .cookie-text a {
+      color: var(--gold);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .cookie-btns {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+    .cookie-btn-essential {
+      background: transparent;
+      color: var(--stone);
+      border: 1px solid rgba(168,191,204,0.3);
+      padding: 0.55rem 1.25rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cookie-btn-essential:hover { border-color: var(--stone); color: white; }
+    .cookie-btn-accept {
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: 0.55rem 1.25rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .cookie-btn-accept:hover { background: var(--gold-light); }
+    @media (max-width: 600px) {
+      .cookie-banner { padding: 1rem 1.25rem; gap: 1rem; }
+      .cookie-text { font-size: 0.8rem; }
+      .cookie-btns { width: 100%; }
+      .cookie-btn-essential, .cookie-btn-accept { flex: 1; text-align: center; padding: 0.7rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Gradimo<span>.</span>zajedno</a>
+  <ul class="nav-links">
+    <li><a href="#modeli">Modeli ulaganja</a></li>
+    <li><a href="#kako">Kako funkcionira</a></li>
+    <li><a href="#zasto">O nama</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#kontakt" class="nav-cta">Kontaktirajte nas</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Primorsko-goranska i Istra</div>
+    <h1>Zajedno do<br/><em>nekretnine.</em></h1>
+    <p class="hero-sub">Spajamo investitore i zemljišta te vodimo vas kroz cijeli proces – od provjere dokumentacije do ključa u ruci.</p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-primary" onclick="goToTab(event,'investitor')">
+        Zanima me ulaganje
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#kontakt" class="btn-secondary" onclick="goToTab(event,'vlasnik')">Imam zemljište / projekt</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg"></div>
+    <div class="hero-visual">
+      <div class="hero-stat">
+        <div class="hero-stat-label">Model A</div>
+        <div class="hero-stat-value">Gradite za sebe</div>
+        <div class="hero-stat-desc">Svaki investitor dobiva vlastiti stan</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Model B</div>
+        <div class="hero-stat-value">Gradite za zaradu</div>
+        <div class="hero-stat-desc">Ulažete udio, zarađujete udio od prodaje</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Vaša uloga</div>
+        <div class="hero-stat-value">Samo uložite</div>
+        <div class="hero-stat-desc">Mi vodimo cijeli proces od A do Ž</div>
+      </div>
+      <div class="hero-location">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Primorsko-goranska županija &amp; Istra
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modeli">
+  <div class="section-eyebrow">Načini ulaganja</div>
+  <h2 class="section-title">Dva modela, jedna platforma</h2>
+  <p class="section-subtitle">Ovisno o vašem cilju – vlastita nekretnina ili financijski prinos – biramo model koji vam odgovara.</p>
+  <div class="modeli-grid">
+    <div class="model-card">
+      <div class="model-card-header model-a">
+        <div class="model-number">A</div>
+        <div class="model-tag">Zajednička gradnja</div>
+        <h3 class="model-card-title">Gradite stan koji postaje vaš</h3>
+      </div>
+      <div class="model-card-body">
+        <p class="model-desc">Grupa investitora zajedno financira izgradnju stambenog objekta. Svaki ulaže određeni udio i nakon završetka gradnje postaje vlasnik svog stana – bez posrednika i bez preplaćivanja tržišne cijene.</p>
+        <ul class="model-features">
+          <li>Svaki investitor ulaže udio ukupnih troškova gradnje</li>
+          <li>Nakon izgradnje svakome pripada jedan stan</li>
+          <li>Cijena po m² značajno niža od tržišne kupovine</li>
+          <li>Transparentni ugovori i jasno definirani udjeli</li>
+          <li>Idealno za one koji žele vlastitu nekretninu</li>
+        </ul>
+      </div>
+    </div>
+    <div class="model-card">
+      <div class="model-card-header model-b">
+        <div class="model-number">B</div>
+        <div class="model-tag">Investicijsko ulaganje</div>
+        <h3 class="model-card-title">Ulažete postotak, zarađujete postotak</h3>
+      </div>
+      <div class="model-card-body">
+        <p class="model-desc">Grupa investitora financira izgradnju objekta namijenjenog prodaji. Nakon završetka i prodaje svaki investitor prima zaradu proporcionalno svom udjelu. Pasivno ulaganje s jasnim pravilima od prvog dana.</p>
+        <ul class="model-features">
+          <li>Ulažete postotak ukupnih troškova projekta</li>
+          <li>Prihod proporcionalan vašem ulaganju</li>
+          <li>Ne morate se baviti operativom – mi to radimo</li>
+          <li>Ugovorom regulirani odnosi svih sudionika</li>
+          <li>Idealno za pasivno ulaganje s prinosom</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kako">
+  <div class="section-eyebrow">Proces</div>
+  <h2 class="section-title">Što mi radimo za vas?</h2>
+  <p class="section-subtitle">Od pronalaska zemljišta do uporabne dozvole – svaki korak je pokriven.</p>
+  <div class="kako-grid">
+    <div class="kako-step">
+      <div class="kako-step-num">01</div>
+      <h3 class="kako-step-title">Pronalazak i provjera zemljišta</h3>
+      <p class="kako-step-desc">Provjeravamo dokumentaciju, namjenu i pravni status terena. Vi ne kupujete mačku u vreći.</p>
+    </div>
+    <div class="kako-step">
+      <div class="kako-step-num">02</div>
+      <h3 class="kako-step-title">Spajanje investitora</h3>
+      <p class="kako-step-desc">Pronalazimo ili okupljamo grupu investitora sa zajedničkim ciljem i usklađenim kapacitetom ulaganja.</p>
+    </div>
+    <div class="kako-step">
+      <div class="kako-step-num">03</div>
+      <h3 class="kako-step-title">Strukturiranje projekta</h3>
+      <p class="kako-step-desc">Pomažemo pri izradi ugovora, definiranju udjela i pravnih odnosa između svih sudionika.</p>
+    </div>
+    <div class="kako-step">
+      <div class="kako-step-num">04</div>
+      <h3 class="kako-step-title">Koordinacija s arhitektima</h3>
+      <p class="kako-step-desc">Povezujemo vas s provjerenim arhitektima i pratimo proces ishođenja građevinske dozvole.</p>
+    </div>
+    <div class="kako-step">
+      <div class="kako-step-num">05</div>
+      <h3 class="kako-step-title">Pronalazak izvođača i nadzora</h3>
+      <p class="kako-step-desc">Pomažemo pri odabiru izvođača radova i nadzornog inženjera. Gradnja mora biti u pravim rukama.</p>
+    </div>
+    <div class="kako-step">
+      <div class="kako-step-num">06</div>
+      <h3 class="kako-step-title">Do uporabne dozvole</h3>
+      <p class="kako-step-desc">Ostajemo uz vas do kraja – od početka gradnje do uporabne dozvole i uknjižbe u zemljišne knjige.</p>
+    </div>
+  </div>
+</section>
+
+<section id="zasto">
+  <div class="section-eyebrow">Zašto Gradimo zajedno</div>
+  <h2 class="section-title">Vodič kroz nepoznat teren</h2>
+  <div class="zasto-layout">
+    <div class="zasto-text">
+      <blockquote class="zasto-quote">"Nije potrebno znati ništa o gradnji. Potrebno je samo znati da želite ulagati pametno."</blockquote>
+      <p>Proces gradnje je za mnoge ljude neproziran i zastrašujući – pun nepoznatih pojmova, procedura i potencijalnih zamki. <strong>Mi smo tu da taj proces učinimo razumljivim.</strong></p>
+      <p>Nismo izvođači, nismo arhitekti. Mi smo vaš orijentir u sustavu koji zna biti kompliciran – od prve konzultacije do trenutka kada stanete u prostoriju koju ste zajedno izgradili.</p>
+      <p>Fokusiramo se na <strong>Primorsko-goransku županiju i Istru</strong> – tržišta koja poznajemo i u kojima imamo provjerene kontakte.</p>
+    </div>
+    <div class="zasto-cards">
+      <div class="zasto-card">
+        <div class="zasto-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+        <div><div class="zasto-card-title">Provjera dokumentacije</div><div class="zasto-card-desc">Svako zemljište prolazi temeljitu provjeru namjene, vlasništva i pravnog statusa.</div></div>
+      </div>
+      <div class="zasto-card">
+        <div class="zasto-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <div><div class="zasto-card-title">Spajanje pravih ljudi</div><div class="zasto-card-desc">Povezujemo investitore s kompatibilnim ciljevima i usklađenim kapacitetima ulaganja.</div></div>
+      </div>
+      <div class="zasto-card">
+        <div class="zasto-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+        <div><div class="zasto-card-title">Jasni ugovori</div><div class="zasto-card-desc">Pomažemo pri strukturiranju ugovornih odnosa koji štite sve strane od prvog dana.</div></div>
+      </div>
+      <div class="zasto-card">
+        <div class="zasto-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div><div class="zasto-card-title">Pratimo cijeli proces</div><div class="zasto-card-desc">Od građevinske dozvole do uknjižbe – nismo tu samo na početku, tu smo do samog kraja.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="section-eyebrow">Česta pitanja</div>
+  <h2 class="section-title">Imate pitanja? Mi imamo odgovore.</h2>
+  <div class="faq-layout">
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Koliko investitora je potrebno za jedan projekt?<div class="faq-icon">+</div></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Ovisi o veličini projekta i modelu ulaganja. Za manji stambeni objekt (4–6 stanova) tipično je potrebno 2 do 6 investitora. Za veće projekte s više stanova ili za investicijski model broj može biti i veći. Sve se definira u fazi strukturiranja projekta.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Koji je minimalni iznos ulaganja?<div class="faq-icon">+</div></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Minimalni iznos ovisi o konkretnom projektu – veličini zemljišta, lokaciji i tipu gradnje. Svaki projekt je različit, pa se iznosi dogovaraju individualno. Kontaktirajte nas za konkretnu procjenu.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Koliko traje cijeli proces od ideje do ključa?<div class="faq-icon">+</div></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Realno računajte na 2 do 4 godine za kompletan projekt – od pronalaska zemljišta i ishođenja dozvola do završetka gradnje i uknjižbe. Faza ishođenja građevinske dozvole zna biti najdulja, ali mi aktivno pratimo svaki korak.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Kako se pravno štitim kao investitor?<div class="faq-icon">+</div></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Pravna zaštita se osigurava kroz ugovor između investitora koji jasno definira udjele, prava, obveze i mehanizme rješavanja sporova. Pomažemo pri strukturiranju tih ugovora uz angažman pravnih stručnjaka. Sve mora biti jasno i na papiru prije prvog uloženog eura.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Što ako se investitori ne slože u nekoj fazi projekta?<div class="faq-icon">+</div></button>
+      <div class="faq-answer"><div class="faq-answer-inner">To je jedan od ključnih razloga zašto je dobro strukturiranje ugovora toliko važno. Ugovorom se unaprijed definiraju mehanizmi donošenja odluka i rješavanja eventualnih neslaganja. Naša uloga je i da u ranoj fazi spojimo investitore čiji su ciljevi i očekivanja usklađena.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Naplaćujete li inicijalnu konzultaciju?<div class="faq-icon">+</div></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Inicijalni razgovor je besplatan. Na njemu procjenjujemo vaše potrebe i mogućnosti, te objašnjavamo kako funkcionira proces. Model naplate dogovaramo individualno ovisno o vrsti i veličini projekta.</div></div>
+    </div>
+  </div>
+  <div class="faq-image">
+    <img src="pexels-leeloothefirst-5428829.jpg" alt="Česta pitanja" />
+  </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="section-eyebrow">Kontakt</div>
+  <h2 class="section-title">Napravite prvi korak</h2>
+  <div class="kontakt-layout">
+    <div class="kontakt-info">
+      <h3>Razgovarajmo.</h3>
+      <p>Bez obaveza. Inicijalni razgovor je besplatan – zajedno procjenjujemo što je za vas moguće i ima li smisla krenuti dalje.</p>
+      <div class="kontakt-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Primorsko-goranska županija &amp; Istra
+      </div>
+      <div class="kontakt-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <span>info [at] gradimozajedno.hr</span>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:0.875rem; color:var(--text-light);">Odgovaramo u roku 24 sata. Svi upiti su povjerljivi.</p>
+    </div>
+    <div>
+      <div class="form-tabs">
+        <button class="form-tab active" id="tab-investitor" onclick="switchTab('investitor')">Tražim projekt za ulaganje</button>
+        <button class="form-tab" id="tab-vlasnik" onclick="switchTab('vlasnik')">Imam zemljište / projekt</button>
+      </div>
+      <form name="kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="kontakt" />
+        <input type="hidden" name="tip-upita" id="tip-upita" value="investitor" />
+        <p style="display:none"><input name="bot-field" /></p>
+        <div class="form-row">
+          <div class="form-group"><label for="ime">Ime</label><input type="text" id="ime" name="ime" placeholder="Vaše ime" required /></div>
+          <div class="form-group"><label for="prezime">Prezime</label><input type="text" id="prezime" name="prezime" placeholder="Vaše prezime" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="vas@email.com" required /></div>
+          <div class="form-group"><label for="telefon">Telefon</label><input type="tel" id="telefon" name="telefon" placeholder="+385 ..." /></div>
+        </div>
+        <div class="form-group" id="model-group">
+          <label for="model">Model koji me zanima</label>
+          <select id="model" name="model">
+            <option value="">Odaberite model</option>
+            <option value="model-a">Model A – Gradnja za vlastitu nekretninu</option>
+            <option value="model-b">Model B – Investicijsko ulaganje za prinos</option>
+            <option value="oboje">Zanima me oboje</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="poruka">Poruka</label><textarea id="poruka" name="poruka" placeholder="Kratko opišite vaš interes ili projekt..."></textarea></div>
+        <div>
+          <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+            Pošaljite upit
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="form-note">Inicijalni razgovor je besplatan. Odgovaramo u roku 24 sata.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Gradimo<span>.</span>zajedno</div>
+  <div class="footer-text">&#169; 2025 Gradimo zajedno. Sva prava pridržana.</div>
+  <div class="footer-region">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    Primorsko-goranska &amp; Istra, Hrvatska
+  </div>
+  <div class="footer-legal">
+    <a href="privatnost.html">Politika privatnosti</a>
+    <a href="uvjeti.html">Uvjeti korištenja</a>
+    <a href="kolacici.html">Politika kolačića</a>
+    <a href="gdpr.html">GDPR</a>
+  </div>
+</footer>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <p class="cookie-text">
+    Koristimo kolačiće kako bismo osigurali ispravno funkcioniranje stranice i razumjeli kako je koristite. Kolačići se postavljaju samo uz vaš pristanak.
+    <a onclick="showCookieInfo()">Saznajte više</a>
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-btn-essential" onclick="acceptCookies('essential')">Samo nužni</button>
+    <button class="cookie-btn-accept" onclick="acceptCookies('all')">Prihvati sve</button>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('scroll', function() {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  function toggleMenu() {
+    document.getElementById('navbar').classList.toggle('menu-open');
+  }
+
+  // Close menu when nav link clicked
+  document.querySelectorAll('.nav-links a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      document.getElementById('navbar').classList.remove('menu-open');
+    });
+  });
+
+  // Swipe gestures for FAQ (swipe down to close, swipe up to open next)
+  var touchStartY = 0;
+  var touchStartX = 0;
+  document.addEventListener('touchstart', function(e) {
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function(e) {
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    // Only handle vertical swipes (not horizontal scrolling)
+    if (Math.abs(dy) < Math.abs(dx) || Math.abs(dy) < 40) return;
+
+    // Swipe on FAQ items
+    var target = e.target.closest('.faq-item');
+    if (target) {
+      if (dy < 0) {
+        // Swipe up = open this item
+        var isOpen = target.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+        if (!isOpen) target.classList.add('open');
+      } else {
+        // Swipe down = close
+        target.classList.remove('open');
+      }
+    }
+
+    // Swipe left/right on hero stats (carousel feel on mobile)
+    var heroStat = e.target.closest('.hero-stat');
+    if (heroStat && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      var stats = Array.from(document.querySelectorAll('.hero-stat'));
+      var idx = stats.indexOf(heroStat);
+      if (dx < 0 && idx < stats.length - 1) {
+        stats[idx + 1].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else if (dx > 0 && idx > 0) {
+        stats[idx - 1].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }, { passive: true });
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(e) {
+    var nav = document.getElementById('navbar');
+    if (nav.classList.contains('menu-open') && !nav.contains(e.target)) {
+      nav.classList.remove('menu-open');
+    }
+  });
+
+  function toggleFaq(btn) {
+    var item = btn.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) { item.classList.add('open'); }
+  }
+
+  function switchTab(tab) {
+    document.getElementById('tab-investitor').classList.toggle('active', tab === 'investitor');
+    document.getElementById('tab-vlasnik').classList.toggle('active', tab === 'vlasnik');
+    document.getElementById('tip-upita').value = tab;
+    document.getElementById('model-group').style.display = tab === 'investitor' ? 'flex' : 'none';
+    document.getElementById('poruka').placeholder = tab === 'investitor'
+      ? 'Kratko opišite koji model vas zanima, okvirni iznos koji razmatrate...'
+      : 'Opišite vaše zemljište ili projekt – lokacija, veličina, trenutni status...';
+  }
+
+  function goToTab(e, tab) {
+    e.preventDefault();
+    switchTab(tab);
+    document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Cookie banner
+  (function() {
+    if (!localStorage.getItem('gz-cookies')) {
+      document.getElementById('cookieBanner').classList.remove('hidden');
+    } else {
+      document.getElementById('cookieBanner').classList.add('hidden');
+    }
+  })();
+
+  function acceptCookies(type) {
+    localStorage.setItem('gz-cookies', type);
+    document.getElementById('cookieBanner').classList.add('hidden');
+  }
+
+  function showCookieInfo() {
+    alert('Koristimo nužne kolačiće za ispravno funkcioniranje stranice. Analitičke kolačiće koristimo samo uz vaš pristanak kako bismo razumjeli kako koristite našu stranicu.');
+  }
+
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').then(function(reg) {
+        console.log('SW registered:', reg.scope);
+      }).catch(function(err) {
+        console.log('SW error:', err);
+      });
+    });
+  }
+</script>
+</body>
+</html>
