@@ -119,6 +119,13 @@
     .kako-step-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 1rem; }
     .kako-step-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; color: var(--earth-deep); margin-bottom: 0.75rem; }
     .kako-step-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.8; }
+    .kako-step-more { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1rem; font-size: 0.8rem; font-weight: 500; color: var(--gold); cursor: pointer; border: none; background: none; padding: 0; font-family: 'DM Sans', sans-serif; transition: gap 0.2s; }
+    .kako-step-more:hover { gap: 0.55rem; }
+    .kako-step-more .arrow { transition: transform 0.3s; display: inline-block; }
+    .kako-step.expanded .kako-step-more .arrow { transform: rotate(90deg); }
+    .kako-step-expanded { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .kako-step.expanded .kako-step-expanded { max-height: 500px; }
+    .kako-step-expanded-inner { padding-top: 1rem; font-size: 0.875rem; color: var(--text-mid); line-height: 1.85; border-top: 1px solid var(--border); margin-top: 1rem; }
 
     #zasto { background: var(--earth-deep); }
     #zasto .section-eyebrow { color: var(--stone); }
@@ -452,31 +459,73 @@
       <div class="kako-step-num">01</div>
       <h3 class="kako-step-title">Pronalazak i provjera zemljišta</h3>
       <p class="kako-step-desc">Provjeravamo dokumentaciju, namjenu i pravni status terena. Vi ne kupujete mačku u vreći.</p>
+      <button class="kako-step-more" onclick="toggleKako(this)">Više <span class="arrow">→</span></button>
+      <div class="kako-step-expanded">
+        <div class="kako-step-expanded-inner">
+          <p>Svako zemljište koje razmatramo prolazi višerazinsku provjeru. Provjeravamo vlasnički list u zemljišnim knjigama, namjenu parcele u prostornom planu, postojanje tereta i ograničenja, kao i stvarne mogućnosti gradnje prema važećim propisima.</p>
+          <p style="margin-top:0.75rem;">Mnogi investitori su u prošlosti kupili parcelu koja nije bila građevinska, ili su se suočili s hipotekama koje nisu bile vidljive na prvu ruku. Mi to sprječavamo – još prije nego što ste uložili kunu.</p>
+        </div>
+      </div>
     </div>
     <div class="kako-step">
       <div class="kako-step-num">02</div>
       <h3 class="kako-step-title">Spajanje investitora</h3>
       <p class="kako-step-desc">Pronalazimo ili okupljamo grupu investitora sa zajedničkim ciljem i usklađenim kapacitetom ulaganja.</p>
+      <button class="kako-step-more" onclick="toggleKako(this)">Više <span class="arrow">→</span></button>
+      <div class="kako-step-expanded">
+        <div class="kako-step-expanded-inner">
+          <p>Jedan od najvećih izazova zajedničke gradnje je pronaći investitore koji dijele iste ciljeve, vremenski horizont i financijski kapacitet. Mi to rješavamo – kroz vlastitu mrežu i aktivno traženje kandidata koji odgovaraju profilu projekta.</p>
+          <p style="margin-top:0.75rem;">Vodimo računa o tome da svaki investitor razumije što potpisuje, koje su mu obveze i što može očekivati. Transparentnost na početku sprječava nesporazume na kraju.</p>
+        </div>
+      </div>
     </div>
     <div class="kako-step">
       <div class="kako-step-num">03</div>
       <h3 class="kako-step-title">Strukturiranje projekta</h3>
       <p class="kako-step-desc">Pomažemo pri izradi ugovora, definiranju udjela i pravnih odnosa između svih sudionika.</p>
+      <button class="kako-step-more" onclick="toggleKako(this)">Više <span class="arrow">→</span></button>
+      <div class="kako-step-expanded">
+        <div class="kako-step-expanded-inner">
+          <p>Zajednička ulaganja bez jasne pravne strukture su recept za probleme. Surađujemo s pravnicima specijaliziranim za nekretnine koji izrađuju ugovore o suvlasništvu, investitorske ugovore i sporazume o raspodjeli troškova i prihoda.</p>
+          <p style="margin-top:0.75rem;">Jasno definiramo udjele svakog investitora, mehanizme odlučivanja, procedure u slučaju odustajanja, te što se događa ako dođe do kašnjenja ili prekoračenja budžeta. Svaki scenarij je pokriven prije prve lopate.</p>
+        </div>
+      </div>
     </div>
     <div class="kako-step">
       <div class="kako-step-num">04</div>
       <h3 class="kako-step-title">Koordinacija s arhitektima</h3>
       <p class="kako-step-desc">Povezujemo vas s provjerenim arhitektima i pratimo proces ishođenja građevinske dozvole.</p>
+      <button class="kako-step-more" onclick="toggleKako(this)">Više <span class="arrow">→</span></button>
+      <div class="kako-step-expanded">
+        <div class="kako-step-expanded-inner">
+          <p>Ishođenje građevinske dozvole jedan je od najsloženijih koraka u procesu gradnje. Uključuje izradu idejnog i glavnog projekta, suglasnosti komunalnih tvrtki, procjene utjecaja na okoliš i niz administrativnih koraka koji mogu trajati i godinu dana.</p>
+          <p style="margin-top:0.75rem;">Naši partneri-arhitekti poznaju lokalne uvjete, prostorne planove i specifičnosti Primorsko-goranske županije i Istre. To skraćuje proces i smanjuje rizik od grešaka koje koštaju.</p>
+        </div>
+      </div>
     </div>
     <div class="kako-step">
       <div class="kako-step-num">05</div>
       <h3 class="kako-step-title">Pronalazak izvođača i nadzora</h3>
       <p class="kako-step-desc">Pomažemo pri odabiru izvođača radova i nadzornog inženjera. Gradnja mora biti u pravim rukama.</p>
+      <button class="kako-step-more" onclick="toggleKako(this)">Više <span class="arrow">→</span></button>
+      <div class="kako-step-expanded">
+        <div class="kako-step-expanded-inner">
+          <p>Odabir izvođača je kritičan. Loš izvođač može uništiti projekt – kašnjenjima, lošom kvalitetom ili prekidom radova. Naša mreža provjerin ih izvođača u regiji rezultat je višegodišnjeg praćenja tržišta i osobnih preporuka.</p>
+          <p style="margin-top:0.75rem;">Uz izvođača, osiguravamo i nadzornog inženjera čija je uloga kontrola kvalitete gradnje u ime investitora. Nadzor nije trošak – to je zaštita vašeg ulaganja na gradilištu.</p>
+        </div>
+      </div>
     </div>
     <div class="kako-step">
       <div class="kako-step-num">06</div>
       <h3 class="kako-step-title">Do uporabne dozvole</h3>
       <p class="kako-step-desc">Ostajemo uz vas do kraja – od početka gradnje do uporabne dozvole i uknjižbe u zemljišne knjige.</p>
+      <button class="kako-step-more" onclick="toggleKako(this)">Više <span class="arrow">→</span></button>
+      <div class="kako-step-expanded">
+        <div class="kako-step-expanded-inner">
+          <p>Završetak gradnje nije kraj procesa. Slijedi tehnički pregled objekta, ishođenje uporabne dozvole i – ono što je mnogi zaborave – uknjižba u zemljišne knjige. Tek tada ste stvarno vlasnik nekretnine u pravnom smislu.</p>
+          <p style="margin-top:0.75rem;">Mi koordiniramo sve te završne korake: od prijave tehničkog pregleda, komunikacije s inspektoratom, do predaje dokumentacije za uknjižbu. Vaša investicija je završena tek kada imate papir u ruci.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -633,6 +682,12 @@
 </div>
 
 <script>
+  function toggleKako(btn) {
+    var step = btn.closest('.kako-step');
+    step.classList.toggle('expanded');
+    btn.querySelector('.arrow').textContent = step.classList.contains('expanded') ? '↓' : '→';
+  }
+
   window.addEventListener('scroll', function() {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
   });
